@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<remv1:Remediation-Plugin xmlns:remv1="RemediationVersion1.xsd" Name="Extract Remote File" Version="1" IsLogRhythmPlugin="true">
+
+<!-- Extract Remote File -->
+  <remv1:Action Name="Extract Remote File" Command="C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file extract-file.ps1" Order="1" />
+    <remv1:StringParameter Name="Target Host" Switch="-target " Order="2">
+      <remv1:DefaultInput>
+        <remv1:DHostName />
+      </remv1:DefaultInput>
+    </remv1:StringParameter>
+    <remv1:StringParameter Name="Full Path to File" Switch="-file " Order="3" />
+    <remv1:StringParameter Name="Local Directory" Switch="-location " Order="4" />
+    <remv1:StringParameter Name="Username" Switch="-username " Order="5" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Password" Switch="-password " Order="6" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+
+<!-- Extract SCSM Log File -->
+  <remv1:Action Name="Extract System Monitor Agent Log File" Command="C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file extract-file.ps1" Order="1" />
+    <remv1:StringParameter Name="Target Host" Switch="-target " Order="2">
+      <remv1:DefaultInput>
+        <remv1:DHostName />
+      </remv1:DefaultInput>
+    </remv1:StringParameter>
+    <remv1:ConstantParameter Name="SCSM Log" Switch="-file scsm" Order="3" />
+    <remv1:StringParameter Name="Local Directory" Switch="-location " Order="4" />
+    <remv1:StringParameter Name="Username" Switch="-username " Order="5" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Password" Switch="-password " Order="6" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+
+<!-- Extract FILEMON Log File -->
+  <remv1:Action Name="Extract File Integrity Monitor Log File" Command="C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file extract-file.ps1" Order="1" />
+    <remv1:StringParameter Name="Target Host" Switch="-target " Order="2">
+      <remv1:DefaultInput>
+        <remv1:DHostName />
+      </remv1:DefaultInput>
+    </remv1:StringParameter>
+    <remv1:ConstantParameter Name="FILEMON Log" Switch="-file filemon" Order="3" />
+    <remv1:StringParameter Name="Local Directory" Switch="-location " Order="4" />
+    <remv1:StringParameter Name="Username" Switch="-username " Order="5" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Password" Switch="-password " Order="6" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+
+<!-- Extract REGMON Log File -->
+  <remv1:Action Name="Extract Registry Monitor Log File" Command="C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file extract-file.ps1" Order="1" />
+    <remv1:StringParameter Name="Target Host" Switch="-target " Order="2">
+      <remv1:DefaultInput>
+        <remv1:DHostName />
+      </remv1:DefaultInput>
+    </remv1:StringParameter>
+    <remv1:ConstantParameter Name="REGMON Log" Switch="-file regmon" Order="3" />
+    <remv1:StringParameter Name="Local Directory" Switch="-location " Order="4" />
+    <remv1:StringParameter Name="Username" Switch="-username " Order="5" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Password" Switch="-password " Order="6" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+
+<!-- Extract FILEMON Log File -->
+  <remv1:Action Name="Extract Real Time File Integrity Monitor Log File" Command="C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe">
+    <remv1:ConstantParameter Name="Script" Switch="-file extract-file.ps1" Order="1" />
+    <remv1:StringParameter Name="Target Host" Switch="-target " Order="2">
+      <remv1:DefaultInput>
+        <remv1:DHostName />
+      </remv1:DefaultInput>
+    </remv1:StringParameter>
+    <remv1:ConstantParameter Name="RTFIM Log" Switch="-file rtfim" Order="3" />
+    <remv1:StringParameter Name="Local Directory" Switch="-location " Order="4" />
+    <remv1:StringParameter Name="Username" Switch="-username " Order="5" />
+    <remv1:EncryptedParameter>
+      <remv1:StringParameter Name="Password" Switch="-password " Order="6" />
+    </remv1:EncryptedParameter>
+  </remv1:Action>
+
+</remv1:Remediation-Plugin>
