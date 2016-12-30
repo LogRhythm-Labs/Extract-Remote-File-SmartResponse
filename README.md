@@ -8,7 +8,7 @@
 
 Recently, a question was posted on the LogRhythm Community Portal around how to extract the LogRhythm SCSM file from a remote Windows server. Fortunately, this is easily accomplished using PowerShell remoting, however we can do much more than extract remote log files. This script allows you to copy any remote file to the local system quickly and easily.
 
-![SCSM=Restart](/images/extract-file.png)
+![Extract=Files](/images/extract-file.png)
 
 ## [How To]
 
