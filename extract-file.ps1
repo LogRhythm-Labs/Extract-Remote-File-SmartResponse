@@ -38,23 +38,23 @@ try {
     # Check the file - if related to SCSM, stop the agent before copying the file, restart after completion
     if ( $file -eq "scsm" ) {
         Invoke-Command -ScriptBlock { Stop-Service scsm } -ComputerName $target -Credential $cred
-        cp "C:\Program Files\LogRhythm\LogRhythm System Monitor\logs\scsm.log" "$location$target-scsm.log" -FromSession $session
+        cp "C:\Program Files\LogRhythm\LogRhythm System Monitor\logs\$file.log" "$location$target-$file.log" -FromSession $session
         Invoke-Command -ScriptBlock { Restart-Service scsm -Force } -ComputerName $target -Credential $cred
     } elseif ( $file -eq "filemon" ) {
         Invoke-Command -ScriptBlock { Stop-Service scsm } -ComputerName $target -Credential $cred
-        cp "C:\Program Files\LogRhythm\LogRhythm System Monitor\logs\filemon.log" "$location$target-scsm.log" -FromSession $session
+        cp "C:\Program Files\LogRhythm\LogRhythm System Monitor\logs\$file.log" "$location$target-$file.log" -FromSession $session
         Invoke-Command -ScriptBlock { Restart-Service scsm -Force } -ComputerName $target -Credential $cred
     } elseif ( $file -eq "regmon" ) {
         Invoke-Command -ScriptBlock { Stop-Service scsm } -ComputerName $target -Credential $cred
-        cp "C:\Program Files\LogRhythm\LogRhythm System Monitor\logs\regmon.log" "$location$target-scsm.log" -FromSession $session
+        cp "C:\Program Files\LogRhythm\LogRhythm System Monitor\logs\$file.log" "$location$target-$file.log" -FromSession $session
         Invoke-Command -ScriptBlock { Restart-Service scsm -Force } -ComputerName $target -Credential $cred
     } elseif ( $file -eq "rtfim" ) {
         Invoke-Command -ScriptBlock { Stop-Service scsm } -ComputerName $target -Credential $cred
-        cp "C:\Program Files\LogRhythm\LogRhythm System Monitor\logs\rtfim.log" "$location$target-scsm.log" -FromSession $session
+        cp "C:\Program Files\LogRhythm\LogRhythm System Monitor\logs\$file.log" "$location$target-$file.log" -FromSession $session
         Invoke-Command -ScriptBlock { Restart-Service scsm -Force } -ComputerName $target -Credential $cred
     } else {
         
-        # Extract any other remote file
+        # Extract Remote File
         try {
         $fileName = $file.split('\')[-1].split(' ')
         cp $file "$location$target-$fileName" -FromSession $session
@@ -79,11 +79,12 @@ Clear-Variable session
 Clear-Variable file
 Clear-Variable location
 
+
 # SIG # Begin signature block
 # MIIdxgYJKoZIhvcNAQcCoIIdtzCCHbMCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU3JY7tywkN0B8oytoJEoh+tl8
-# JYGgghi2MIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpr2xOqvYg/844/JnleX736v0
+# 8rygghi2MIID7jCCA1egAwIBAgIQfpPr+3zGTlnqS5p31Ab8OzANBgkqhkiG9w0B
 # AQUFADCBizELMAkGA1UEBhMCWkExFTATBgNVBAgTDFdlc3Rlcm4gQ2FwZTEUMBIG
 # A1UEBxMLRHVyYmFudmlsbGUxDzANBgNVBAoTBlRoYXd0ZTEdMBsGA1UECxMUVGhh
 # d3RlIENlcnRpZmljYXRpb24xHzAdBgNVBAMTFlRoYXd0ZSBUaW1lc3RhbXBpbmcg
@@ -221,22 +222,22 @@ Clear-Variable location
 # MDEuMCwGA1UEAxMlVmVyaVNpZ24gQ2xhc3MgMyBDb2RlIFNpZ25pbmcgMjAxMCBD
 # QQIQb86k4QlOrKAuOolBFzl1RTAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEK
 # MAigAoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3
-# AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUqQuNaWOrQatZ7XGq
-# BNTqxhn5GaswDQYJKoZIhvcNAQEBBQAEggEACsMpFuzjuABTbazk5XbmPpFUubvh
-# uP4OnQtloU8vrYxqLkA0NmlVRHY7u/g0Xrps6heDAEWXwrAgRWttvsOB+LWYbn3I
-# E2fzZ6WRZ8W83icvK9mBFyD+jT4X4dnb+spYNx/LF+ND/25TAyJ21vndoLR8z1oQ
-# sfbNM/xm480jo1lCI6sK9bI6HzCqQ8gkcm2ZI9rVTMVfv3RKpYlOfGsZtMwj/zJH
-# WbnGF1L7aDEj5APT5sCYZJRFfNqPu7JzMGMmcC3RyiQvTgoax/zL+tl5CcUlHRlU
-# mO8HPftDSDLEP1QMskfQeFjesjLaH2aC9ynVAEJlo9ZCDEcfeh544wPna6GCAgsw
+# AgELMQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQULW1Qrv+0nRLDT0er
+# M0BiNm4hopcwDQYJKoZIhvcNAQEBBQAEggEAXsXVsOYnSjrXYjjtTKB8uuYi3dLL
+# VTDX+hR8/dx28H24S2ZYNNvfLqPteEFWDzoBzgDBk3sxTpeNsPKCbUEriRRjExW+
+# pFL+cNh/fyUxJEOcEZePLfM/IzSOSPeDc1eW4ceNKXNPmWLse085GGh57Xt654tQ
+# +p6mjQCjUNZ2IL8AXewlQvTvR/DvbzBqXpW3E19s+IdXHb2YG1m1ZnnSNRXqeJL0
+# akWLPMqbGqMt54JV5uLaTpbdDbBWT01tikMVe2XfbkS01e9Ocb3HwBVqy9sf+TR7
+# 21XihitSY3s3iGD+CznuB3iPMEdCcwdN5uJybhSzwSQc2CWc6qJtHo9SQ6GCAgsw
 # ggIHBgkqhkiG9w0BCQYxggH4MIIB9AIBATByMF4xCzAJBgNVBAYTAlVTMR0wGwYD
 # VQQKExRTeW1hbnRlYyBDb3Jwb3JhdGlvbjEwMC4GA1UEAxMnU3ltYW50ZWMgVGlt
 # ZSBTdGFtcGluZyBTZXJ2aWNlcyBDQSAtIEcyAhAOz/Q4yP6/NW4E2GqYGxpQMAkG
 # BSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-# BTEPFw0xNjEyMzAxNjQ1MTZaMCMGCSqGSIb3DQEJBDEWBBT6RgmB4bQHEyPhd1NW
-# eVQG2kLsRjANBgkqhkiG9w0BAQEFAASCAQCG3UGTMYnA3JLxZBeTHN56X8Js/4Jq
-# KWrY2FwUOfhG4IOmg1SH7aI4tJUpJWt9PKM8UWBaF4Z6Nxw9j5ww1XoD/w+TQ29K
-# y51M6PqLdkMTXY7CxUyJL0v6VcILlOTCyQczUC7fURzGnFCgOzlkt1JCL4LrnidR
-# yYR5zE/6LgCCn9WJ0fqCrv5W7RvDBR81QOl4E8qotb98JExp8bHmQKR2vFwDdGDS
-# 8WT8i2TH72OWS6sZD5oHMoUv/eNOsrGPg4OpVkLSa52aY1MeO8Vn/SRaOlc1qNLv
-# iNI8U7V8GKwUTKf5Bd9hZ/kjFmJVdpVNZC282sVb/ryUV2gW8SiN4RGn
+# BTEPFw0xNjEyMzAyMzAyMDhaMCMGCSqGSIb3DQEJBDEWBBRRz/G5qSJc6simgf1H
+# lbow08C2LDANBgkqhkiG9w0BAQEFAASCAQBuIUn6ZtNSos8mdHrWRJwl3VAfQ3qn
+# lUon4whOZyrxVzssApFjlnsz9M9hpIwQQf7pVp6/PQq/EPFN91nMqRcbzkIo7zNB
+# ZNsF5RZWy3jureYMcj74MQ9VZZBEcEOf+yt+94Yd0uq7FRjthuHuu4ithtRT3IIB
+# pT5EHrEvpEArj7+DM70rDgrk42beSqegx5ErcDQ592MSiJP9f8TSNCn41hDMl1Lj
+# jTx4GkP6Kp6ZRq9FtDHtXyB408WG4Nu1+lWNuzE+f3ydrxJVa2s9ce1htsT1FDNH
+# Fpy4aUk4H4BMs9bBGfT8IRojeQb0jBF8trRow4jycUovmgTz3E0oXsr0
 # SIG # End signature block
